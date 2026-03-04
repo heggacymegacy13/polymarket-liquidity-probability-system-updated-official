@@ -11,19 +11,9 @@ This repository provides a modular framework for:
 - **Strategy engine**: Pluggable strategies (market making, volatility, signals).
 - **Interfaces**: A Typer-based CLI and a minimal FastAPI dashboard.
 
-The goal is to clearly demonstrate a realistic path to **Verified Builder (3,000 tx/day)** by:
-
-- Tracking **daily relayer transactions** and volume.
-- Running multiple strategies and markets concurrently.
-- Enforcing **risk limits** so scale is safe and controlled.
-
-> **Note**  
-> This is a reference implementation. You must plug in the official Polymarket Builder Program details (endpoints, signing rules, and relayer behavior) before trading with real funds.
-
-
 ## Repository layout
 
-The project is structured as a serious, multi-module codebase:
+The project is structured as a multi-module codebase:
 
 - **Project root**
   - `pyproject.toml` – installable Python package, tooling (black, ruff, mypy).
@@ -204,4 +194,5 @@ pytest
 
 See `docs/architecture.md`, `docs/configuration.md`, `docs/strategies.md`,
 and `docs/deployment.md` for deeper details.
+
 
