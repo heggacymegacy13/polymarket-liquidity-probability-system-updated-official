@@ -1,8 +1,6 @@
 polymarket-liquidity-bot-suite
 ================================
 
-An opinionated, production-grade reference implementation of a **Polymarket Builder trading system**.
-
 This repository provides a modular framework for:
 
 - **Polymarket integration**: Markets, events, order books, positions, trades.
@@ -194,5 +192,6 @@ pytest
 
 See `docs/architecture.md`, `docs/configuration.md`, `docs/strategies.md`,
 and `docs/deployment.md` for deeper details.
+
 
 
