@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Polymarket Liquidity Bot - Markets</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Watched Markets</h1>
+      <nav>
+        <a href="/">Overview</a>
+        <a href="/markets">Markets</a>
+        <a href="/metrics">Metrics</a>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Event ID</th>
+              <th>Question</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for m in markets %}
+            <tr>
+              <td>{{ m.id }}</td>
+              <td>{{ m.event_id }}</td>
+              <td>{{ m.question }}</td>
+              <td>{{ m.status }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>
+

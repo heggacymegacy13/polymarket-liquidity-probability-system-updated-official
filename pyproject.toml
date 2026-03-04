@@ -1,0 +1,76 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "polymarket-liquidity-bot-suite"
+version = "0.1.0"
+description = "Production-grade Polymarket Builder trading system with strategies, CLI, and web dashboard."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+  { name = "Polymarket Builder Bot Team" }
+]
+keywords = ["polymarket", "trading-bot", "builder-program", "clob", "relayer", "liquidity"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+dependencies = [
+  "pydantic>=2.0.0",
+  "pydantic-settings>=2.2.0",
+  "httpx>=0.24.0",
+  "typer[all]>=0.9.0",
+  "fastapi>=0.110.0",
+  "uvicorn[standard]>=0.29.0",
+  "python-dotenv>=1.0.0",
+  "SQLAlchemy>=2.0.0",
+  "alembic>=1.13.0",
+  "rich>=13.0.0",
+  "Jinja2>=3.1.0",
+  "PyYAML>=6.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "black>=24.0.0",
+  "ruff>=0.3.0",
+  "mypy>=1.8.0",
+  "pytest>=7.4.0",
+  "pytest-asyncio>=0.23.0",
+  "pytest-cov>=4.1.0",
+  "pre-commit>=3.6.0",
+]
+
+[project.scripts]
+polymarket-bot = "polymarket_bot.interfaces.cli:app"
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E203", "E501"]
+src = ["polymarket_bot", "tests"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+disallow_untyped_defs = true
+ignore_missing_imports = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers"
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["polymarket_bot*"]
+

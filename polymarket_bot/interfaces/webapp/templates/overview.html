@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Polymarket Liquidity Bot - Overview</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Polymarket Liquidity Bot</h1>
+      <nav>
+        <a href="/">Overview</a>
+        <a href="/markets">Markets</a>
+        <a href="/metrics">Metrics</a>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <h2>Positions</h2>
+        {% if positions %}
+        <table>
+          <thead>
+            <tr>
+              <th>Market ID</th>
+              <th>Outcome ID</th>
+              <th>Size</th>
+              <th>Avg Entry Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for p in positions %}
+            <tr>
+              <td>{{ p.market_id }}</td>
+              <td>{{ p.outcome_id }}</td>
+              <td>{{ "%.4f"|format(p.size) }}</td>
+              <td>{{ p.avg_entry_price if p.avg_entry_price is not none else "-" }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <p>No positions available for the configured wallet.</p>
+        {% endif %}
+      </section>
+
+      <section>
+        <h2>Latest Metrics</h2>
+        {% if metrics %}
+        <ul>
+          <li><strong>Day:</strong> {{ metrics.day }}</li>
+          <li><strong>Relayer transactions:</strong> {{ metrics.relayer_tx_count }}</li>
+          <li><strong>Volume:</strong> {{ "%.4f"|format(metrics.volume) }}</li>
+          <li><strong>Markets traded:</strong> {{ metrics.markets_traded }}</li>
+        </ul>
+        {% else %}
+        <p>No metrics recorded yet. Run strategies to generate activity.</p>
+        {% endif %}
+      </section>
+    </main>
+  </body>
+</html>
+

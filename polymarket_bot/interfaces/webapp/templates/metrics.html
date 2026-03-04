@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Polymarket Liquidity Bot - Metrics</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Metrics</h1>
+      <nav>
+        <a href="/">Overview</a>
+        <a href="/markets">Markets</a>
+        <a href="/metrics">Metrics</a>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <table>
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Relayer TX Count</th>
+              <th>Volume</th>
+              <th>Markets Traded</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in rows %}
+            <tr>
+              <td>{{ row.day }}</td>
+              <td>{{ row.relayer_tx_count }}</td>
+              <td>{{ "%.4f"|format(row.volume) }}</td>
+              <td>{{ row.markets_traded }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>
+

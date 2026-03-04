@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  bot:
+    build: .
+    environment:
+      - POLYMARKET_API_BASE=${POLYMARKET_API_BASE}
+      - BUILDER_API_KEY=${BUILDER_API_KEY}
+      - BUILDER_API_SECRET=${BUILDER_API_SECRET}
+      - RELAYER_API_BASE=${RELAYER_API_BASE}
+      - RELAYER_API_KEY=${RELAYER_API_KEY}
+      - PRIVATE_KEY=${PRIVATE_KEY}
+      - WALLET_ADDRESS=${WALLET_ADDRESS}
+      - DATABASE_URL=${DATABASE_URL}
+      - MAX_DAILY_TX=${MAX_DAILY_TX}
+      - MAX_DAILY_NOTIONAL=${MAX_DAILY_NOTIONAL}
+      - MAX_MARKET_NOTIONAL=${MAX_MARKET_NOTIONAL}
+      - MAX_DAILY_DRAWDOWN=${MAX_DAILY_DRAWDOWN}
+    volumes:
+      - ./config:/app/config
+    depends_on: []
+
+  web:
+    build: .
+    command: ["polymarket-bot", "web"]
+    ports:
+      - "8000:8000"
+    environment:
+      - POLYMARKET_API_BASE=${POLYMARKET_API_BASE}
+      - BUILDER_API_KEY=${BUILDER_API_KEY}
+      - BUILDER_API_SECRET=${BUILDER_API_SECRET}
+      - RELAYER_API_BASE=${RELAYER_API_BASE}
+      - RELAYER_API_KEY=${RELAYER_API_KEY}
+      - PRIVATE_KEY=${PRIVATE_KEY}
+      - WALLET_ADDRESS=${WALLET_ADDRESS}
+      - DATABASE_URL=${DATABASE_URL}
+      - MAX_DAILY_TX=${MAX_DAILY_TX}
+      - MAX_DAILY_NOTIONAL=${MAX_DAILY_NOTIONAL}
+      - MAX_MARKET_NOTIONAL=${MAX_MARKET_NOTIONAL}
+      - MAX_DAILY_DRAWDOWN=${MAX_DAILY_DRAWDOWN}
+    depends_on:
+      - bot
+
